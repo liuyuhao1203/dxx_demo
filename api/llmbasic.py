@@ -2,12 +2,6 @@ import openai
 from openai import OpenAI
 import os
 
-proxy_url = 'http://127.0.0.1'
-proxy_port = '7890'
-
-os.environ['http_proxy'] = f'{proxy_url}:{proxy_port}'
-os.environ['https_proxy'] = f'{proxy_url}:{proxy_port}'
-
 
 def gpt4_1106_preview(pt):
   client = OpenAI()
@@ -92,7 +86,7 @@ if __name__ == '__main__':
   <{text}>
   """
 
-  pt = '你还记得场3的内容吗'
+  pt = '你知道美国编剧教父麦基研发三幕式结构吗'
   print(pt)
 
 
