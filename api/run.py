@@ -184,6 +184,7 @@ def create_script():
                 scriptobj["时间"] = content_data["时间"]
                 scriptobj["地点"] = content_data["地点"]
                 scriptobj["剧本内容"] = content_data["剧本内容"]
+                scriptobj["元素"] = content_data["元素"]
             rsp = {"success": True, "content": scriptobj} 
 
         return rsp
