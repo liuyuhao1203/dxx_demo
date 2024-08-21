@@ -50,8 +50,8 @@ def generate(num, event):
         response = get_completion_from_messages(context,model="gpt-4o-2024-05-13")
         context.append({"role": "assistant", "content": response})
         with open('./result/' + item + '.rs','w', encoding='utf-8') as f2:
-            # 剧本内容已经故事梗概可能存在换行符，需要特殊处理
-            if item.startswith("script") or item == "outline":
+            # 剧本内容、故事梗概、大元素可能存在换行符，需要特殊处理
+            if item.startswith("script") or item == "outline" or item == "main_element":
                 rsp = {"success": 1, "content": response}
                 f2.write(json.dumps(rsp, ensure_ascii=False, indent=4))
             else:

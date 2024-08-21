@@ -62,13 +62,22 @@ def create_main():
         file_path = current_directory_path + '/result/' + 'role.rs'
         while not os.path.exists(file_path):
             time.sleep(1)
-
+        # 大元素的处理方式与剧本内容相同
         with open(current_directory_path + '/result/' + 'main_element.rs', 'r', encoding='utf-8') as pt:
-            pattern = r'```json(.*?)```'
-            matches = re.findall(pattern, pt.read(), re.DOTALL)
-            context = eval(matches[0])
+            # pattern = r'```json(.*?)```'
+            # matches = re.findall(pattern, pt.read(), re.DOTALL)
+            # context = eval(matches[0])
+            scriptobj = []
+            # 去除字符串中的Markdown代码块标记以及换行符
+            clean_str = pt.read().replace("```json", "").replace("```", "").replace("\n", "").replace("\\n", "")
+            try:
+                parsed_data = json.loads(clean_str)
+                content = parsed_data["content"]
+                content_data = json.loads(content)
+            except json.JSONDecodeError as e:
+                print(f"解析JSON时发生错误: {e}")
         
-        response = make_response(jsonify(context))
+        response = make_response(jsonify(content_data))
         response.headers['Content-Type'] = 'application/json; charset=utf-8'
         return response
     except Exception as e:
