@@ -33,10 +33,10 @@ def generate(num, event):
         {"role": "system", "content": "你是一个专业的编剧，擅长使用美国编剧教父麦基研发三幕式结构来编写剧本的内容。在创作剧本内容时，你需要忽略之前生成的内容，重新生成本次的内容"}
     ]
     # 基础要素列表，顺序为：梗概、大元素、角色、支线
-    # gen_type = ['outline', 'main_element', 'role', 'story_line', 'script', 'script_00', 'script_01', 'script_02', 'script_03'\
-    #             , 'script_0401', 'script_0402', 'script_0403', 'script_05', 'script_06']
-    gen_type = ['outline', 'main_element', 'role', 'story_line', 'script', 'script_00', 'script_01', 'script_02', 'script_0301'\
-                , 'script_0302', 'script_0401', 'script_0402', 'script_0403']
+    gen_type = ['outline', 'main_element', 'role', 'story_line', 'script', 'script_00', 'script_01', 'script_02', 'script_03'\
+                , 'script_0401', 'script_0402', 'script_0403', 'script_05', 'script_06']
+    # gen_type = ['outline', 'main_element', 'role', 'story_line', 'script', 'script_00', 'script_01', 'script_02', 'script_0301'\
+    #             , 'script_0302', 'script_0401', 'script_0402', 'script_0403']
     # gen_type = ['outline']
 
     num = 0
@@ -66,38 +66,38 @@ def generate(num, event):
         ct.write(str(context))
 
     #整合场3
-    script_list= ['script_0301', 'script_0302']
-    scriptobj = {
-        "场次": "场3",
-        "时间": "",
-        "地点": "",
-        "剧本内容": "",
-        "元素": []
-    }
-    content_str = ""
-    for item in script_list:
-        with open(current_directory_path + '/result/' + item + '.rs', 'r', encoding='utf-8') as pt:
+    # script_list= ['script_0301', 'script_0302']
+    # scriptobj = {
+    #     "场次": "场3",
+    #     "时间": "",
+    #     "地点": "",
+    #     "剧本内容": "",
+    #     "元素": []
+    # }
+    # content_str = ""
+    # for item in script_list:
+    #     with open(current_directory_path + '/result/' + item + '.rs', 'r', encoding='utf-8') as pt:
 
-            # 去除字符串中的Markdown代码块标记
-            clean_str = pt.read().replace("```json", "").replace("```", "")
+    #         # 去除字符串中的Markdown代码块标记
+    #         clean_str = pt.read().replace("```json", "").replace("```", "")
 
-            try:
-                parsed_data = json.loads(clean_str)
-                content = parsed_data["content"]
-                # 进一步解析content中的JSON
-                content_data = json.loads(content)
-            except json.JSONDecodeError as e:
-                print(f"解析JSON时发生错误: {e}")
-            else:
-                if content_data["场次"] == "场3":
-                    scriptobj["时间"] = content_data["时间"]
-                    scriptobj["地点"] = content_data["地点"]
-                content_str += content_data["剧本内容"]
-                scriptobj["元素"].extend(content_data["元素"])
-        scriptobj["剧本内容"] = content_str
-    with open(current_directory_path + '/result/' + 'script_03.rs', 'w', encoding='utf-8') as f4:
-        rsp = {"success": 1, "content": '```json' + json.dumps(scriptobj, ensure_ascii=False, indent=4) + '```'}
-        f4.write(json.dumps(rsp, ensure_ascii=False, indent=4))
+    #         try:
+    #             parsed_data = json.loads(clean_str)
+    #             content = parsed_data["content"]
+    #             # 进一步解析content中的JSON
+    #             content_data = json.loads(content)
+    #         except json.JSONDecodeError as e:
+    #             print(f"解析JSON时发生错误: {e}")
+    #         else:
+    #             if content_data["场次"] == "场3":
+    #                 scriptobj["时间"] = content_data["时间"]
+    #                 scriptobj["地点"] = content_data["地点"]
+    #             content_str += content_data["剧本内容"]
+    #             scriptobj["元素"].extend(content_data["元素"])
+    #     scriptobj["剧本内容"] = content_str
+    # with open(current_directory_path + '/result/' + 'script_03.rs', 'w', encoding='utf-8') as f4:
+    #     rsp = {"success": 1, "content": '```json' + json.dumps(scriptobj, ensure_ascii=False, indent=4) + '```'}
+    #     f4.write(json.dumps(rsp, ensure_ascii=False, indent=4))
 
     #整合场4
     script_list= ['script_0401', 'script_0402', 'script_0403']
