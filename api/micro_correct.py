@@ -1,26 +1,31 @@
+import os
+
 class MicroCorrect:
     # 类变量，属于类，不属于单个实例
     class_variable = '我是一个类变量'
+    current_file_path = os.path.abspath(__file__)
+    current_directory_path = os.path.dirname(current_file_path)
 
     def __init__(self, name, age):
         # 实例变量，属于类的每个实例
         self.name = name
         self.age = age
 
-    def correct_logic(self):
+    @classmethod
+    def correct_logic(cls):
         """
         逻辑性文字修复功能
         """
         try:
-            while True:  # 无限循环，等待用户输入
-                print("Please enter some text to analyze or 'exit' to quit.")
-                user_input = input()
-        
-                if user_input.lower() == 'exit':  # 检查用户是否想要退出
-                    print("Exiting the program.")
-                    break
-        
-        #time.sleep(86400)  # 等待一天
+            print("Please enter some text to analyze or 'exit' to quit.")
+            user_input = input()
+            with open(cls.current_directory_path + '/pt/corrcet_pt/logic.pt', 'r', encoding='utf-8') as f:
+                logic_pt = f.read()
+                logic_pt = logic_pt.replace('${text}', user_input)
+            return logic_pt
+            if user_input.lower() == 'exit':  # 检查用户是否想要退出
+                print("Exiting the program.")
+                break
 
         except KeyboardInterrupt:
             rint("Program was interrupted by user.")
@@ -39,3 +44,6 @@ class MicroCorrect:
     def static_method():
         # 静态方法，不使用类或实例变量
         print("This is a static method. It does not have access to class or instance variables.")
+
+if __name__ == '__main__':
+    MicroCorrect.correct_logic()
