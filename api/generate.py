@@ -143,9 +143,16 @@ def merge_script():
 
 if __name__ == '__main__':
     with open(current_directory_path + '/result/' + 'context.rs','r', encoding='utf-8') as ct:
-        context = json.loads(ct.read())
-    logic_pt = MicroCorrect.correct_logic()
-    context.append({"role": "user", "content": logic_pt})
-    with open(current_directory_path + '/result/logic/' + 'context.rs','w', encoding='utf-8') as ct:
-        ct.write(str(context))
+        context = eval(ct.read())
+    while True:
+        print("Please enter some text to analyze or 'exit' to quit.")
+        user_input = input()
+        if user_input.lower() == 'exit':  # 检查用户是否想要退出
+            print("Exiting the program.")
+            break
+        logic_pt = MicroCorrect.correct_logic(user_input)
+        context.append({"role": "user", "content": logic_pt})
+        response = get_completion_from_messages(context, model="gpt-4o-2024-05-13")
+        print(response)
+        context.append({"role": "assistant", "content": response})
     #response = get_completion_from_messages(context, model="gpt-4o-2024-05-13")
