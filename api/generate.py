@@ -143,7 +143,7 @@ def merge_script():
 
 if __name__ == '__main__':
     with open(current_directory_path + '/result/' + 'context.rs','w', encoding='utf-8') as ct:
-        context = json.loads(ct)
+        context = json.loads(ct.read())
     logic_pt = MicroCorrect.correct_logic()
     context.append({"role": "user", "content": logic_pt})
     with open(current_directory_path + '/result/logic/' + 'context.rs','w', encoding='utf-8') as ct:
