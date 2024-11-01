@@ -23,9 +23,9 @@ class MicroCorrect:
                 logic_pt = f.read()
                 logic_pt = logic_pt.replace('${text}', user_input)
             return logic_pt
-            if user_input.lower() == 'exit':  # 检查用户是否想要退出
-                print("Exiting the program.")
-                break
+            # if user_input.lower() == 'exit':  # 检查用户是否想要退出
+            #     print("Exiting the program.")
+            #     break
 
         except KeyboardInterrupt:
             rint("Program was interrupted by user.")
