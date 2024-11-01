@@ -12,13 +12,11 @@ class MicroCorrect:
         self.age = age
 
     @classmethod
-    def correct_logic(cls):
+    def correct_logic(cls, user_input):
         """
         逻辑性文字修复功能
         """
         try:
-            print("Please enter some text to analyze or 'exit' to quit.")
-            user_input = input()
             with open(cls.current_directory_path + '/pt/corrcet_pt/logic.pt', 'r', encoding='utf-8') as f:
                 logic_pt = f.read()
                 logic_pt = logic_pt.replace('${text}', user_input)
