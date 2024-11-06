@@ -154,5 +154,5 @@ if __name__ == '__main__':
         context.append({"role": "user", "content": logic_pt})
         response = get_completion_from_messages(context, model="gpt-4o-2024-05-13")
         print(response)
-        context.append({"role": "assistant", "content": response})
+        # context.append({"role": "assistant", "content": response})
     #response = get_completion_from_messages(context, model="gpt-4o-2024-05-13")
