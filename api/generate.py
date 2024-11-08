@@ -154,5 +154,12 @@ if __name__ == '__main__':
         context.append({"role": "user", "content": logic_pt})
         response = get_completion_from_messages(context, model="gpt-4o-2024-05-13")
         print(response)
+        clean_str = str(response).replace("```json", "").replace("```", "")
+        try:
+            parsed_data = json.loads(clean_str)
+            content = parsed_data["场次"]
+            print(content)
+        except json.JSONDecodeError as e:
+            print(f"解析JSON时发生错误: {e}")
         # context.append({"role": "assistant", "content": response})
     #response = get_completion_from_messages(context, model="gpt-4o-2024-05-13")
