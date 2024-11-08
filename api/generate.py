@@ -142,7 +142,7 @@ def merge_script():
         f4.write(json.dumps(rsp, ensure_ascii=False, indent=4))
 
 if __name__ == '__main__':
-    script_map = {"场3": "script_03.rs"}
+    script_map = {"场次3": "script_03.rs","场次4": "script_03.rs"}
     with open(current_directory_path + '/result/' + 'context.rs','r', encoding='utf-8') as ct:
         context = eval(ct.read())
     while True:
