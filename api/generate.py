@@ -142,6 +142,7 @@ def merge_script():
         f4.write(json.dumps(rsp, ensure_ascii=False, indent=4))
 
 if __name__ == '__main__':
+    script_map = {"场3": "script_03.rs"}
     with open(current_directory_path + '/result/' + 'context.rs','r', encoding='utf-8') as ct:
         context = eval(ct.read())
     while True:
@@ -158,7 +159,7 @@ if __name__ == '__main__':
         try:
             parsed_data = json.loads(clean_str)
             content = parsed_data["场次"]
-            print(content)
+            print(script_map[content])
         except json.JSONDecodeError as e:
             print(f"解析JSON时发生错误: {e}")
         # context.append({"role": "assistant", "content": response})
