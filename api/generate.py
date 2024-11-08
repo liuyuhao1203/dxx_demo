@@ -159,6 +159,8 @@ if __name__ == '__main__':
         try:
             parsed_data = json.loads(clean_str)
             content = parsed_data["新生成的对话内容"]
+            print(parsed_data)
+            print("==========")
             print(content)
             old_dialogue_escaped = re.escape(user_input)
             with open(current_directory_path + '/result/' + script_map[content],'r', encoding='utf-8') as rs:
