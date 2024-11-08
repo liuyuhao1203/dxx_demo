@@ -155,7 +155,7 @@ if __name__ == '__main__':
         context.append({"role": "user", "content": logic_pt})
         response = get_completion_from_messages(context, model="gpt-4o-2024-05-13")
         print(response)
-        clean_str = str(response).replace("```json", "").replace("```", "")
+        clean_str = str(response).replace("```json", "").replace("```", "").replace("\n", "\\n")
         try:
             parsed_data = json.loads(clean_str)
             content = parsed_data["新生成的对话内容"]
