@@ -163,7 +163,7 @@ if __name__ == '__main__':
             print("==========")
             print(content)
             old_dialogue_escaped = re.escape(user_input)
-            with open(current_directory_path + '/result/' + script_map[content],'r', encoding='utf-8') as rs:
+            with open(current_directory_path + '/result/' + script_map[parsed_data["场次"]],'r', encoding='utf-8') as rs:
                 updated_article = re.sub(old_dialogue_escaped, parsed_data["新生成的对话内容"], rs.read())
                 with open(current_directory_path + '/result/' + script_map[content], 'w', encoding='utf-8') as new_rs:
                     new_rs.write(updated_article)
