@@ -165,8 +165,14 @@ if __name__ == '__main__':
             old_dialogue_escaped = re.escape(user_input)
             with open(current_directory_path + '/result/' + script_map[parsed_data["场次"]],'r', encoding='utf-8') as rs:
                 updated_article = re.sub(old_dialogue_escaped, parsed_data["新生成的对话内容"], rs.read())
-                with open(current_directory_path + '/result/' + script_map[content], 'w', encoding='utf-8') as new_rs:
-                    new_rs.write(updated_article)
+            with open(current_directory_path + '/result/' + script_map[content], 'w', encoding='utf-8') as new_rs:
+                new_rs.write(updated_article)
+
+            #context
+            with open(current_directory_path + '/result/context.rs','r', encoding='utf-8') as rs:
+                updated_ct = re.sub(old_dialogue_escaped, parsed_data["新生成的对话内容"], rs.read())
+            with open(current_directory_path + '/result/context.rs', 'w', encoding='utf-8') as new_rs:
+                new_rs.write(updated_ct)
         except json.JSONDecodeError as e:
             print(f"解析JSON时发生错误: {e}")
         # context.append({"role": "assistant", "content": response})
