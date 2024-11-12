@@ -34,10 +34,10 @@ def generate(num, event):
         {"role": "system", "content": "你是一个专业的编剧，擅长使用美国编剧教父麦基研发三幕式结构来编写剧本的内容。在创作剧本内容时，你需要忽略之前生成的内容，重新生成本次的内容"}
     ]
     # 基础要素列表，顺序为：大元素、梗概、角色、支线
-    # gen_type = ['outline', 'main_element', 'role', 'story_line', 'script', 'script_00', 'script_01', 'script_02', 'script_03'\
-    #             , 'script_0401', 'script_0402', 'script_0403', 'script_0404', 'script_0405', 'script_05', 'script_06']
-    gen_type = ['main_element', 'outline', 'role', 'story_line', 'script', 'script_00', 'script_01', 'script_02', 'script_0301'\
-                , 'script_0302', 'script_0401', 'script_0402', 'script_0403', 'script_0404', 'script_0405', 'script_05', 'script_06']
+    gen_type = ['main_element', 'outline', 'role', 'story_line', 'script', 'script_00', 'script_01', 'script_02', 'script_03_new'\
+                 , 'script_0401', 'script_0402', 'script_0403', 'script_0404', 'script_0405', 'script_05', 'script_06']
+    # gen_type = ['main_element', 'outline', 'role', 'story_line', 'script', 'script_00', 'script_01', 'script_02', 'script_0301'\
+    #             , 'script_0302', 'script_0401', 'script_0402', 'script_0403', 'script_0404', 'script_0405', 'script_05', 'script_06']
     # gen_type = ['outline']
 
     num = 0
