@@ -114,5 +114,4 @@ def merge_script():
         rsp = {"success": 1, "content": '```json' + json.dumps(scriptobj, ensure_ascii=False, indent=4) + '```'}
         f4.write(json.dumps(rsp, ensure_ascii=False, indent=4))
 
-if __name__ == '__main__':
     
