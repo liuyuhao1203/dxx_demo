@@ -16,7 +16,7 @@ def generate(num, event):
         pt = f.read()
         context.append({"role": "system", "content": pt})
     # 基础要素
-    gen_type = ['level1_5.pt']
+    gen_type = ['level1_5']
 
     num = 0
     for item in gen_type:
@@ -115,38 +115,4 @@ def merge_script():
         f4.write(json.dumps(rsp, ensure_ascii=False, indent=4))
 
 if __name__ == '__main__':
-    script_map = {"场次3": "script_03.rs","场次4": "script_03.rs"}
-    with open(current_directory_path + '/result/' + 'context.rs','r', encoding='utf-8') as ct:
-        context = eval(ct.read())
-    while True:
-        print("Please enter some text to analyze or 'exit' to quit.")
-        user_input = input()
-        if user_input.lower() == 'exit':  # 检查用户是否想要退出
-            print("Exiting the program.")
-            break
-        logic_pt = MicroCorrect.correct_logic(user_input)
-        context.append({"role": "user", "content": logic_pt})
-        response = get_completion_from_messages(context, model="gpt-4o-2024-05-13")
-        print(response)
-        clean_str = str(response).replace("```json", "").replace("```", "")
-        try:
-            parsed_data = json.loads(clean_str)
-            content = parsed_data["新生成的对话内容"].replace("\n", "\\n")
-            print(parsed_data)
-            print("==========")
-            print(content)
-            old_dialogue_escaped = re.escape(user_input)
-            with open(current_directory_path + '/result/' + script_map[parsed_data["场次"]],'r', encoding='utf-8') as rs:
-                updated_article = re.sub(old_dialogue_escaped, parsed_data["新生成的对话内容"], rs.read())
-            with open(current_directory_path + '/result/' + script_map[content], 'w', encoding='utf-8') as new_rs:
-                new_rs.write(updated_article)
-
-            #context
-            with open(current_directory_path + '/result/context.rs','r', encoding='utf-8') as rs:
-                updated_ct = re.sub(old_dialogue_escaped, parsed_data["新生成的对话内容"], rs.read())
-            with open(current_directory_path + '/result/context.rs', 'w', encoding='utf-8') as new_rs:
-                new_rs.write(updated_ct)
-        except json.JSONDecodeError as e:
-            print(f"解析JSON时发生错误: {e}")
-        # context.append({"role": "assistant", "content": response})
-    #response = get_completion_from_messages(context, model="gpt-4o-2024-05-13")
+    
