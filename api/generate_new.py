@@ -36,7 +36,7 @@ def generate(num, event):
                 f2.write(response)
         num += 1
             
-            event.set()
+    event.set()
     with open(current_directory_path + '/result/' + 'context.rs','w', encoding='utf-8') as ct:
         ct.write(str(context))
 
