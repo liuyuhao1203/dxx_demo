@@ -22,8 +22,6 @@ def generate(num, event):
     for item in gen_type:
         with open('./pt/' + item +'.pt', 'r', encoding='utf-8') as f:
             pt = f.read()
-            print("=============")
-            print(pt)
             context.append({"role": "user", "content": pt})
         response = get_completion_from_messages(context,model="gpt-4o-2024-05-13")
         context.append({"role": "assistant", "content": response})
