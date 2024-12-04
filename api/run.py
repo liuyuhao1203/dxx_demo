@@ -253,7 +253,7 @@ def start():
         # 设置事件为未设置状态
         event.clear()
 
-        file_generation_thread = threading.Thread(target=generate, args=(0, event))
+        file_generation_thread = threading.Thread(target=generate_new, args=(0, event))
         file_generation_thread.start()
 
         # 等待第一个文件生成，故事梗概生成好之后返回，方便前端继续执行
