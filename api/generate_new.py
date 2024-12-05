@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from micro_correct import MicroCorrect
-from llmbasic import get_completion_from_messages
+from llmbasic import *
 import json
 import re
 import os
@@ -23,7 +23,7 @@ def generate(num, event):
         with open('./pt/' + item +'.pt', 'r', encoding='utf-8') as f:
             pt = f.read()
             context.append({"role": "user", "content": pt})
-        response = get_completion_from_messages(context,model="gpt-4o-2024-05-13")
+        response = get_completion_from_messages_grok(context)
         context.append({"role": "assistant", "content": response})
         with open('./result/' + item + '.rs','w', encoding='utf-8') as f2:
             # 剧本内容、故事梗概、大元素可能存在换行符，需要特殊处理
