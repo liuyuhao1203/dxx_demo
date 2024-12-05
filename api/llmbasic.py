@@ -48,17 +48,22 @@ def get_completion_from_messages(messages, model='gpt-4-0125-preview', temperatu
   return response.choices[0].message.content
 
 def get_completion_from_messages_grok(messages, model='grok-beta', temperature=0):
-  XAI_API_KEY = ''
-  client = OpenAI(
-    api_key=XAI_API_KEY,
-    base_url="https://api.x.ai/v1",
-  )
-  
-  response = client.chat.completions.create(
-    model = model,
-    messages = messages,
-    temperature = temperature,
-  )
+  url = 'https://api.x.ai/v1/chat/completions'
+
+  data = {
+    "messages": messages,
+    "model": medel,
+    "temperature": temperature
+  }
+  # 将数据转换为JSON格式
+  json_data = json.dumps(data)
+
+  # 设置请求头，指定发送JSON数据
+  headers = {
+      'Content-Type': 'application/json'
+      'Authorization: Bearer '
+  }
+  response = requests.post(url, data=json_data, headers=headers)
   return response.choices[0].message.content
 
 if __name__ == '__main__':
